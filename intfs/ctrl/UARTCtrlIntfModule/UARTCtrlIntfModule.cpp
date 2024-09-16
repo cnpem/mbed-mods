@@ -23,10 +23,7 @@ void UARTCtrlIntfModule::_task() {
   /* '+ 1' is accounting for the string terminator */
   char buff[_max_cmd_len + 1];
   rtos::Semaphore ready(0, 1);
-  CtrlIntfModuleMessage ctrl_intf_mod_msg = {
-    .buff     = buff,
-    .p_ready  = &ready
-  };
+  CtrlIntfModuleMessage ctrl_intf_mod_msg(buff, &ready);
 
   while(true) {
     uint8_t count;
