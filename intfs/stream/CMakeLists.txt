@@ -1,6 +1,4 @@
-add_subdirectory(ctrl)
-add_subdirectory(stream)
-add_subdirectory(TCPFwUpdateModule)
+add_subdirectory(TCPStreamIntfModule)
 
 set(MODULES_HDRS ${MODULES_HDRS} PARENT_SCOPE)
 set(MODULES_SRCS ${MODULES_SRCS} PARENT_SCOPE)

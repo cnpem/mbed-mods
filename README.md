@@ -31,6 +31,10 @@ particularities.
 |   |   |-- UARTCtrlIntfModule
 |   |   |       UART text-based control interface module.
 |
+|   |-- stream
+|   |   |-- TCPStreamIntfModule
+|   |   |       TCP binary stream interface module.
+|
 |-- scripts
 |   |-- intfs
 |   |   |-- TCPFwUpdateModule
@@ -39,12 +43,11 @@ particularities.
 
 ## Firmware architecture
 
-![Image](https://github.com/user-attachments/assets/9dc9eccb-181a-4c71-87b4-b7fec71c77a6)
+<img width="2957" height="1705" alt="99c93e9bead91d08bb98c6517eb5f5886233c561e27c7db5d46662b1174b5989" src="https://github.com/user-attachments/assets/d8d3e4c9-8430-4c2a-b54a-5378ec7070be" />
+
 
 `CtrlCoreModule` is the module responsible for receiving, parsing, acting on and
 responding to requests (commands) coming from the interface modules.
-
-_`TCPStreamIntfModule`_ is currently under development.
 
 ## Modules' inheritance diagram
 
