@@ -1,4 +1,5 @@
 add_subdirectory(intfs)
+add_subdirectory(Module)
 
 set(MODULES_HDRS ${MODULES_HDRS} ${CMAKE_CURRENT_SOURCE_DIR}/Module)
 
