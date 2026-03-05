@@ -1,4 +1,4 @@
-# Mbed OS Modules
+# Mbed Modules
 
 Mbed OS-based modules providing common functionalities and a standardized way of
 structuring the firmware.
