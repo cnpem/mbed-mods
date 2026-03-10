@@ -17,7 +17,7 @@ class Module {
      *       memory fragmentation. Static allocation is preferred.
      */
     Module(osPriority priority, uint32_t stack_size, unsigned char *stack_mem,
-        const char *name) {
+        const char *name) : _name(name) {
       _p_thread = new rtos::Thread(priority, stack_size, stack_mem, name);
     }
 
@@ -29,11 +29,34 @@ class Module {
     bool start() {
       mbed::Callback<void()> cb = callback(this, &Module::_task);
 
-      return _p_thread->start(cb) == osOK? true : false;
+      return _p_thread->start(cb) == osOK ? true : false;
+    }
+
+    /* Returns the RTOS thread ID of this module's internal thread. */
+    osThreadId_t get_id() const {
+      return _p_thread->get_id();
+    }
+
+    /* Prints runtime stack usage information of this module's thread.
+     * NOTE: Requires stack statistics to be enabled in Mbed.
+     */
+    void dump_stack_usage() const {
+      osThreadId_t id = _p_thread->get_id();
+
+      uint32_t total = osThreadGetStackSize(id);
+      uint32_t free_ = osThreadGetStackSpace(id);
+      uint32_t used  = total - free_;
+
+      debug("[STACK] %s total=%lu used=%lu free=%lu\n",
+            _name ? _name : "unknown",
+            (unsigned long)total,
+            (unsigned long)used,
+            (unsigned long)free_);
     }
 
   private:
     rtos::Thread *_p_thread;
+    const char *_name;
 
     /* A method to be executed by the internal thread when start() is called.
      * NOTE: Inherited classes must implement this.
