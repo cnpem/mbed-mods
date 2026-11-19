@@ -40,6 +40,7 @@ major, minor, patch = sys.argv[5], sys.argv[6], sys.argv[7]
 
 print('# Opening socket... ', end='')
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.settimeout(5.0)
 sock.connect((ip, port))
 print('done')
 
